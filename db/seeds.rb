@@ -255,11 +255,7 @@ puts "..Users created!"
 
 # ---- LISTINGS ---------
 puts "Creating Listing data..."
-# listingImgs = [
-#     ""
-# ]
 category = [ "Furniture", "Design", "Build", "Plumbing", "Electrical", "Other"]
-
 
 # San Francisco listings
 Listing.create(
@@ -352,12 +348,12 @@ Listing.create(
     user_id: 8,
 )
 Listing.create(
-    listing_img: "https://blog.recessedlighting.com/wp-content/uploads/2014/09/living-room-layout-med.jpg"
+    listing_img: "https://marvel-b1-cdn.bc0a.com/f00000000067111/www.probuilder.com/sites/probuilder/files/Screen%20Shot%202013-08-23%20at%201.56.17%20PM.png"
     title: "Great room wall demo"
     category: "Build"
     location: "Seattle"
     price: 100,
-    desc: "Would like to survey great room wall to approve demo"
+    desc: "Would like to survey great room wall to approve demo."
     user_id: 8,
 )
 3 times do 
@@ -372,4 +368,134 @@ Listing.create(
     )
 end
 
+# New York Listings
+Listing.create(
+    listing_img: "https://media.istockphoto.com/photos/water-running-from-shower-head-and-faucet-in-modern-bathroom-picture-id1176125291?k=20&m=1176125291&s=612x612&w=0&h=CqxVU9inKmzoUl8AgGdRYcQTbv0UM3kAzw66h2UCw4Q="
+    title: "Shower head installation"
+    category: "Plumbing"
+    location: "New York"
+    price: 50,
+    desc: "Uninstall old shower head with new handheld shower head system."
+    user_id: 11,
+)
+Listing.create(
+    listing_img: "https://media.istockphoto.com/photos/worker-carpenter-doing-laminate-floor-work-picture-id1133685683?k=20&m=1133685683&s=612x612&w=0&h=ntp0WV7VJGBlrRbfCBvHLp3i7qX6_9OKe43oZMwq3ek="
+    title: "Flooring install"
+    category: "Other"
+    location: "New York"
+    price: 80,
+    desc: "Need install of new flooring throughout home."
+    user_id: 11,
+)
+Listing.create(
+    listing_img: "https://certapro.com/wp-content/uploads/cache//z_footer/3313024203.jpg"
+    title: "Interior painting"
+    category: "Other"
+    location: "New York"
+    price: 80,
+    desc: "Looking for quick and efficient team to paint through home. Open to living room mural ideas."
+    user_id: 11,
+)
+3 times do 
+    Listing.create(
+        listing_img: "https://media.istockphoto.com/vectors/home-icon-flat-vector-illustration-design-vector-id1162202962?k=20&m=1162202962&s=170667a&w=0&h=q9Y9VlP2pgoJOpSdwLLTIS64_cyREBOULeVXf2OtBuU="
+        title: "Task Example"
+        category: category.sample
+        location: "New York"
+        price: Faker::Number.between(from: 50, to: 100),
+        desc: Faker::Lorem.sentence
+        user_id: rand(10..12)
+    )
+end
 
+# Boston Listings
+Listing.create(
+    listing_img: "https://media.istockphoto.com/photos/hand-unplugging-an-orange-cord-from-a-white-outlet-picture-id172255004?k=20&m=172255004&s=612x612&w=0&h=8YlaC1KkQDVOkYZ062w5oo8RIFfRuPCfsV3gcBA7e6I="
+    title: "New outlet locations"
+    category: "Electrical"
+    location: "Boston"
+    price: 50,
+    desc: "Looking for an experienced electrician who can re-route new outlet locations throughout our home"
+    user_id: 13,
+)
+Listing.create(
+    listing_img: "https://www.mydomaine.com/thmb/Fk2OuGa8aDqoGBNPXTso97I2t1U=/500x350/filters:no_upscale():max_bytes(150000):strip_icc()/SuCasaDesign-Modern-9335be77ca0446c7883c5cf8d974e47c.jpg"
+    title: "Home addition"
+    category: "Design"
+    location: "Boston"
+    price: 90,
+    desc: "Looking for an architect with a strong sense of modern design for our home's new addition."
+    user_id: 13,
+)
+3 times do 
+    Listing.create(
+        listing_img: "https://media.istockphoto.com/vectors/home-icon-flat-vector-illustration-design-vector-id1162202962?k=20&m=1162202962&s=170667a&w=0&h=q9Y9VlP2pgoJOpSdwLLTIS64_cyREBOULeVXf2OtBuU="
+        title: "Task Example"
+        category: category.sample
+        location: "Boston"
+        price: Faker::Number.between(from: 50, to: 100),
+        desc: Faker::Lorem.sentence
+        user_id: rand(13..14)
+    )
+end
+
+# Chicago Listings
+Listing.create(
+    listing_img: "https://media.istockphoto.com/photos/hand-unplugging-an-orange-cord-from-a-white-outlet-picture-id172255004?k=20&m=172255004&s=612x612&w=0&h=8YlaC1KkQDVOkYZ062w5oo8RIFfRuPCfsV3gcBA7e6I="
+    title: "Home renovation"
+    category: "Builder"
+    location: "Chicago"
+    price: 60,
+    desc: "Our home renovation is behind. Looking for additional carpenters to get us back on schedule."
+    user_id: 15,
+)
+Listing.create(
+    listing_img: "https://images05.military.com/sites/default/files/styles/full/public/media/money/va-loans/2017/08/army-habitat-humanity-build-home.jpg"
+    title: "Fixtures installation"
+    category: "Plumbing"
+    location: "Chicago"
+    price: 80,
+    desc: "Complete install of all newly baught fixtures throughout the home"
+    user_id: 15,
+)
+3 times do 
+    Listing.create(
+        listing_img: "https://media.istockphoto.com/vectors/home-icon-flat-vector-illustration-design-vector-id1162202962?k=20&m=1162202962&s=170667a&w=0&h=q9Y9VlP2pgoJOpSdwLLTIS64_cyREBOULeVXf2OtBuU="
+        title: "Task Example"
+        category: category.sample
+        location: "Chicago"
+        price: Faker::Number.between(from: 50, to: 100),
+        desc: Faker::Lorem.sentence
+        user_id: rand(15..16)
+    )
+end
+puts "...Listings created!"
+
+
+# ---- USER CONVERSATIONS ---------
+puts "Creating UserConversation data..."
+  
+# USER 1's Inbox
+UserConversation.create(
+    user_id: 1,
+    conversation_id: 1
+)
+
+UserConversation.create(
+    user_id: 1,
+    conversation_id: 2
+)
+
+UserConversation.create(
+    user_id: 1,
+    conversation_id: 3
+)
+puts "...UserConversation created!"
+
+
+# ---- CONVERSATION ---------
+puts "Creating UserConversation data..."
+Conversation.create(
+    user_id: 1,
+    conversation_id: 1
+)
