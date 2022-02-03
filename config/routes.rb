@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :user_reviews, only:[:create, :destroy]
 
   resources :messages, only:[:index, :create, :destroy] 
-  resources :conversations #all routes
+  resources :conversations, only:[:index, :show, :create, :destroy] 
   resources :user_conversations, only:[:create, :destroy] 
 
 
