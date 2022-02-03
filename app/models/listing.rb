@@ -6,4 +6,5 @@ class Listing < ApplicationRecord
     validates :desc, presence: true
 
     belongs_to :user
+    has_one :listing_photo, dependent: :destroy
 end
