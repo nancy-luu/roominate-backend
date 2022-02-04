@@ -1,9 +1,4 @@
 class UserPhotosController < ApplicationController
-    
-    def index
-        user_photo = UserPhoto.all
-        render json: photos 
-    end 
 
     def show
         user_photo = UserPhoto.find(params[:id])
@@ -20,5 +15,4 @@ class UserPhotosController < ApplicationController
         end 
     end 
 
-    
 end

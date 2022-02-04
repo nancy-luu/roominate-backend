@@ -7,7 +7,6 @@ class CreateListings < ActiveRecord::Migration[7.0]
       t.integer :price
       t.string :desc
       t.references :user
-      t.datetime :created_at
 
       t.timestamps
     end
