@@ -232,18 +232,11 @@ puts "..Users created!"
 
 
 #-----USER PHOTOS----------
-fakeuserids = Faker::Number.between(from: 1, to: 41).uniq
-
-# puts "Creating User Photos data..."
-# 41 times do 
-#     UserPhoto.create(
-#         user_id: fakeuserids
-#         imge: "https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png"
-#     )
-# end
-# puts "..User Photos created!"
-
-
+User.all.find_each do |user|
+    user.user_photos << UserPhoto.create!(
+    user_id: self.id,
+    image: "https://nanuntio.com/wp-content/uploads/2020/03/service_default_avatar_182956.png")  
+end
 
 
 # ---- LISTINGS ---------
@@ -442,6 +435,13 @@ Listing.create(
     )
 end
 puts "...Listings created!"
+
+#-----LISTING PHOTOS----------
+Listing.all.find_each do |listing|
+    listing.listing_photo << ListingPhoto.create!(
+        listing_id: self.id,
+        image: "https://media.istockphoto.com/vectors/home-icon-flat-vector-illustration-design-vector-id1162202962?k=20&m=1162202962&s=170667a&w=0&h=q9Y9VlP2pgoJOpSdwLLTIS64_cyREBOULeVXf2OtBuU=")  
+end
 
 
 # ---- CONVERSATION ---------
