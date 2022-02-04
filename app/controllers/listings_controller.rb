@@ -3,7 +3,7 @@ class ListingsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found     
     
     def index
-        render json: Listing.all
+        render json: Listing.all.order(created_at: :desc)
     end 
 
     def create 

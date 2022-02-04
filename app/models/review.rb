@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
-    validates :message, pressence: true
+    validates :message, presence: true
 
     belongs_to :user_review
 end

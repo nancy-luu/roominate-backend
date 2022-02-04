@@ -5,14 +5,14 @@ class ConversationsController < ApplicationController
         render json: Conversation.all
     end
 
-    def user_conversations
+    def show
         render json: Conversation.where(user_1: @current_user).or(user_2: @current_user).order(created_at: :desc)
     end
 
-    def show
-        conversation = find_conversation
-        render json: conversation, status: :ok
-    end
+    # def show
+    #     conversation = find_conversation
+    #     render json: conversation, status: :ok
+    # end
 
     def create 
         conversation = Conversation.create!(conversation_params)

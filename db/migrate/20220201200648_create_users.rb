@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :user_desc
       t.string :user_location
       t.integer :user_charge
+      t.references :user_photos
 
       t.timestamps
     end
