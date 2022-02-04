@@ -19,8 +19,14 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
+
   get "/userphoto", to: "userphotos#show"
   post '/photos', to: 'photos#create'
   
- 
+  
+  get '/listing/:id', to: 'listings#show'
+
+  
+  get '/conversations' to: 'conversation#index'
+
 end

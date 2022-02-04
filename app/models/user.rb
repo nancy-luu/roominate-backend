@@ -4,8 +4,7 @@ class User < ApplicationRecord
     
     has_many :listings
 
-    has_many :user_conversations, dependent: :destroy
-    has_many :conversations, through: :user_conversations
+    # has_many :conversations
 
     has_one :user_review, dependent: :destroy
     has_many :reviews, through: :user_reviews

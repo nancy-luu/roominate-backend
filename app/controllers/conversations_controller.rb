@@ -1,9 +1,12 @@
 class ConversationsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
-
     def index 
         render json: Conversation.all
+    end
+
+    def user_conversations
+        render json: Conversation.where(user_1: @current_user).or(user_2: @current_user).order(created_at: :desc)
     end
 
     def show
@@ -21,7 +24,6 @@ class ConversationsController < ApplicationController
         conversation.destroy!
         head :no_content
     end
-
 
     private 
 
