@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
     t.integer "price"
     t.string "desc"
     t.bigint "user_id"
+    t.bigint "listing_photos_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["listing_photos_id"], name: "index_listings_on_listing_photos_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
@@ -86,8 +88,10 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
     t.string "user_desc"
     t.string "user_location"
     t.integer "user_charge"
+    t.bigint "user_photos_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_photos_id"], name: "index_users_on_user_photos_id"
   end
 
   add_foreign_key "listing_photos", "listings"

@@ -2,8 +2,9 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
-    def index
-        render json: Review.all
+    def show
+        review = Review.find(params[:id])
+        render json: review
     end
 
     def create 
@@ -17,7 +18,7 @@ class ReviewsController < ApplicationController
         head :no_content
     end
 
-   
+    
     private 
 
     def review_params
