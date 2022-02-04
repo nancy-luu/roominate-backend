@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
   end
 
   create_table "listings", force: :cascade do |t|
-    t.string "listing_img"
     t.string "title"
     t.string "category"
     t.string "location"
@@ -83,7 +82,6 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
     t.string "username"
     t.string "email"
     t.string "password_digest"
-    t.string "user_img"
     t.string "user_type"
     t.string "user_desc"
     t.string "user_location"

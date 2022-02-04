@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
-rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-skip_before_action :authorize, only: [:create]
+    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    skip_before_action :authorize, only: [:create]
 
     def index
         render json: User.all
@@ -26,7 +26,6 @@ skip_before_action :authorize, only: [:create]
         render json: user, status: :ok
     end
 
-
     # GET /me
     # handles the auto-login and allows user to stay logged in when page refreshes
     def show
@@ -38,7 +37,7 @@ skip_before_action :authorize, only: [:create]
 
     def user_params
         # The has_secure_password (Links to an external site.) method also provides two new instance methods on your User model: password and password_confirmation. These methods don't correspond to database columns! Instead, to make these methods work, your users table must have a password_digest column.
-        params.permit(:username, :email, :password, :password_confirmation, :image_url, :bio)
+        params.permit(:username, :email, :password, :password_confirmation, :user_type, :user_desc, :user_location, :user_charge)
     end
 
     def record_invalid(invalid)
