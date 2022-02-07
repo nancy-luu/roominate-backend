@@ -9,8 +9,8 @@ class User < ApplicationRecord
     has_many :messages, through: :conversations
 
     has_one :user_review, dependent: :destroy
-    has_many :reviews, through: :user_reviews
-
+    has_many :reviews, through: :user_review
+    
     has_one :user_photo, dependent: :destroy
 
     #enables password encryption with bcrypt

@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   # for user authentication
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
+  get "/auth", to: "application#authorize"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
-  
 end

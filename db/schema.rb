@@ -76,10 +76,8 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
 
   create_table "user_reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "review_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["review_id"], name: "index_user_reviews_on_review_id"
     t.index ["user_id"], name: "index_user_reviews_on_user_id"
   end
 
@@ -102,6 +100,5 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
   add_foreign_key "listing_photos", "listings"
   add_foreign_key "messages", "conversations"
   add_foreign_key "user_photos", "users"
-  add_foreign_key "user_reviews", "reviews"
   add_foreign_key "user_reviews", "users"
 end

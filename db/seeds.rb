@@ -482,16 +482,17 @@ puts "...Conversations created!"
 
 
 # ---- MESSAGES ---------
-puts "Creating Message data..."
+# puts "Creating Message data..."
 Message.create(
     message: "I am available this weekend to inspect.",
     conversation_id: 1,
     user_id: 1
 )
-Message.create(
-    message: "Yes",
-    conversation_id: 1,
-    user_id: 5
-)
+# Message.create(
+#     message: "Yes",
+#     conversation_id: 1,
+#     sender_id: 5
+#     receiver_id: 1
+# )
 
-puts "...Message created!"
+# puts "...Message created!"
