@@ -455,31 +455,43 @@ puts "...created ListingPhotos!"
 
 # ---- CONVERSATION ---------
 puts "Creating Conversation data..."
-Conversation.create(
+Conversation.create!(
     header: "Are you still looking for help with your task?",
-    user_1: 1,
-    user_2: 5
+    user_id: 1, 
+    user2_id: 5
 )
+Conversation.create!(
+    header: "Are you still looking for help with your task?",
+    user_id: 10, 
+    user2_id: 9
+)
+#get user and find by id on front end
 
-Conversation.create(
-    header: "Are you still looking for help with your task?",
-    user_1: 1,
-    user_2: 8
-)
+# Conversation.create(
+#     header: "Are you still looking for help with your task?",
+#     user_1: 1,
+#     user_2: 8
+# )
 
-Conversation.create(
-    header: "Are you still looking for help with your task?",
-    user_1: 1,
-    user_2: 10
-)
+# Conversation.create(
+#     header: "Are you still looking for help with your task?",
+#     user_1: 1,
+#     user_2: 10
+# )
 puts "...Conversations created!"
 
 
-# # ---- MESSAGES ---------
-# puts "Creating Message data..."
-# Message.create(
-#     message: "I am available this weekend to inspect.",
-#     sender_id: 5,
-#     conversation_id: 1
-# )
-# puts "...Message created!"
+# ---- MESSAGES ---------
+puts "Creating Message data..."
+Message.create(
+    message: "I am available this weekend to inspect.",
+    conversation_id: 1,
+    user_id: 1
+)
+Message.create(
+    message: "Yes",
+    conversation_id: 1,
+    user_id: 5
+)
+
+puts "...Message created!"

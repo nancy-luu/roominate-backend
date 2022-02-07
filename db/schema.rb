@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
 
   create_table "conversations", force: :cascade do |t|
     t.string "header"
-    t.integer "user_1"
-    t.integer "user_2"
+    t.bigint "user_id"
+    t.bigint "user2_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user2_id"], name: "index_conversations_on_user2_id"
+    t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
   create_table "listing_photos", force: :cascade do |t|
@@ -47,11 +49,12 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
 
   create_table "messages", force: :cascade do |t|
     t.string "message"
-    t.integer "sender_id"
     t.bigint "conversation_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -94,6 +97,8 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
     t.index ["user_photos_id"], name: "index_users_on_user_photos_id"
   end
 
+  add_foreign_key "conversations", "users"
+  add_foreign_key "conversations", "users", column: "user2_id"
   add_foreign_key "listing_photos", "listings"
   add_foreign_key "messages", "conversations"
   add_foreign_key "user_photos", "users"
