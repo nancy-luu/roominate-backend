@@ -1,9 +1,14 @@
 class UserReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
 
+    def show 
+        user_review = UserReview.find(params[:id])
+        render json: user_review
+    end
+
     def create 
-        userReviews = UserReview.create!(userReview_params)
-        render json: userReviews, status: :created
+        userReview = UserReview.create!(userReview_params)
+        render json: userReview, status: :created
     end
 
     def destroy
