@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   resources :user_photos, only:[:show, :create, :update]
 
   resources :listings #all routes
-  resources :listing_photos, only:[:index, :show, :create]
+  resources :listing_photos, only:[:show, :create, :update]
 
   resources :reviews, only:[:show, :create, :destroy]
-  resources :user_reviews, only:[:create, :destroy]
+  resources :user_reviews, only:[:show, :create, :destroy]
 
-  resources :messages, only:[:index, :create, :destroy] 
+  resources :messages, only:[:index, :show, :create, :destroy] 
   resources :conversations, only:[:index, :show, :create, :destroy] 
 
   # for user authentication

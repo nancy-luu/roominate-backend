@@ -6,6 +6,12 @@ class MessagesController < ApplicationController
         render json: Message.all
     end
 
+
+    def show 
+        message = Messages.find(params[:id])
+        render json: message
+    end
+
     def create
         message = Message.create!(message_params)
         render json: message, status: :created
