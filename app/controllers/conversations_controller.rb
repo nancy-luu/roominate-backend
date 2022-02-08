@@ -28,7 +28,7 @@ class ConversationsController < ApplicationController
     private 
 
     def conversation_params 
-        params.permit(:header)
+        params.permit(:header, :user_id, :user2_id)
     end
 
     def record_invalid(invalid)

@@ -1,36 +1,36 @@
 class UsersController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
-    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-    skip_before_action :authorize, only: [:create]
+    skip_before_action :require_login
 
     def index
         render json: User.all.order(created_at: :desc)
     end
 
-    #POST /signup
-    def create
-        user = User.create!(user_params)
-        session[:user_id] = user.id
-        render json: user, status: :created
-    end
+    def show
+        user=User.find(params[:id])
+        render json: user
+    end 
 
-    def destroy
-        user = find_user
-        user.destroy!
-        head :no_content
+    def profile
+        render json: {user: UserSerializer.new(current_user)}, status: :accepted
+     end
+
+    #POST /signup
+    def create 
+        @user=User.create(user_params)
+          if @user.valid?
+            #JWT sends the token here from Application Controller
+            #Comment token and render out if raises an error
+            token=encode_token({user_id: @user.id})
+            render json: {user: UserSerializer.new(@user), token: token} 
+          else
+            render json: {error: @user.errors.full_messages}, status: :not_acceptable
+          end 
     end
 
     def update
         user = find_user
         user.update!(user_params)
         render json: user, status: :ok
-    end
-
-    # GET /me
-    # handles the auto-login and allows user to stay logged in when page refreshes
-    def show
-        # byebug
-        render json: @current_user
     end
 
     private
