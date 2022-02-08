@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login
+    skip_before_action :require_login, only: [:test]
+
+    def test
+    end
+
 
     def index
         render json: User.all.order(created_at: :desc)

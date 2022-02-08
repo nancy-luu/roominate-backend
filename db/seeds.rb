@@ -15,44 +15,19 @@ user_type = [ "Home Owner", "Designer", "Builder", "Plumber", "Electrician", "Ot
 location = [ "San Francisco", "Los Angeles", "Seattle", "New York", "Boston", "Chicago"]
 fakeJob = Faker::Job.unique.title
 
-# San Francisco Home Owner sample Users - TOTAL: 4 /#1-4
-User.create(
-    username: "Donna",
-    email: "Donna@email.com",
-    password: "1234",
-    user_type: "Home Owner",
-    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
-    user_location: "San Francisco",
-    user_charge: Faker::Number.between(from: 50, to: 100),
-)
-User.create(
-    username: "Andrew",
-    email: "Andrew@email.com",
-    password: "1234",
-    user_type: "Home Owner",
-    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
-    user_location: "San Francisco",
-    user_charge: Faker::Number.between(from: 50, to: 100),
-)
-User.create(
-    username: "Quade",
-    email: "Quade@email.com",
-    password: "1234",
-    user_type: "Home Owner",
-    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
-    user_location: "San Francisco",
-    user_charge: Faker::Number.between(from: 50, to: 100),
-)
-User.create(
-    username: "Ebri",
-    email: "Ebri@email.com",
-    password: "1234",
-    user_type: "Home Owner",
-    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
-    user_location: "San Francisco",
-    user_charge: Faker::Number.between(from: 50, to: 100),
-)
-
+20.times do
+    fakeName = Faker::Name.unique.first_name
+    User.create(
+        username: fakeName,
+        email: "#{fakeName}@email.com",
+        password: "1234",
+        user_type: user_type.sample,
+        user_desc: Faker::Lorem.sentence,
+        user_location: location.sample,
+        user_charge: Faker::Number.between(from: 50, to: 100),
+    ) 
+end
+puts "..Users created!"
 # Los Angeles Home Owner sample Users - TOTAL: 3 / #5-7
 User.create(
     username: "Chris",
@@ -217,19 +192,44 @@ User.create(
     user_location: location.sample,
     user_charge: Faker::Number.between(from: 50, to: 100),
 )
-20.times do
-    fakeName = Faker::Name.unique.first_name
-    User.create(
-        username: fakeName,
-        email: "#{fakeName}@email.com",
-        password: "1234",
-        user_type: user_type.sample,
-        user_desc: Faker::Lorem.sentence,
-        user_location: location.sample,
-        user_charge: Faker::Number.between(from: 50, to: 100),
-    ) 
-end
-puts "..Users created!"
+# San Francisco Home Owner sample Users - TOTAL: 4 /#1-4
+User.create(
+    username: "Andrew",
+    email: "Andrew@email.com",
+    password: "1234",
+    user_type: "Home Owner",
+    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
+    user_location: "San Francisco",
+    user_charge: Faker::Number.between(from: 50, to: 100),
+)
+User.create(
+    username: "Quade",
+    email: "Quade@email.com",
+    password: "1234",
+    user_type: "Home Owner",
+    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
+    user_location: "San Francisco",
+    user_charge: Faker::Number.between(from: 50, to: 100),
+)
+User.create(
+    username: "Ebri",
+    email: "Ebri@email.com",
+    password: "1234",
+    user_type: "Home Owner",
+    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
+    user_location: "San Francisco",
+    user_charge: Faker::Number.between(from: 50, to: 100),
+)
+User.create(
+    username: "Donna",
+    email: "Donna@email.com",
+    password: "1234",
+    user_type: "Home Owner",
+    user_desc: "#{fakeJob} living in San Francisco for #{rand(1..10)} years",
+    user_location: "San Francisco",
+    user_charge: Faker::Number.between(from: 50, to: 100),
+)
+
 
 
 # -----USER PHOTOS---------
@@ -249,42 +249,17 @@ puts "...craeted UserPhotos!"
 puts "Creating Listing data..."
 category = [ "Furniture", "Design", "Build", "Plumbing", "Electrical", "Other"]
 
-# San Francisco listings
-Listing.create(
-    title: "Faucet repair",
-    category: "Plumbing",
-    location: "San Francisco",
-    price: Faker::Number.between(from: 50, to: 100),
-    desc: "Leaky faucet in masterbath needs fixing or replace.",
-    user_id: 1,
-)
-Listing.create(
-    title: "Kitchen design and renovation",
-    category: "Design",
-    location: "San Francisco",
-    price: 120,
-    desc: "In search of a freelance designer to create a new kitchen layout. Hoping to start construction within 3 to 4 months.",
-    user_id: 1,
-)
-Listing.create(
-    title: "Sofa reupholstering",
-    category: "Other",
-    location: "San Francisco",
-    price: 60,
-    desc: "Looking to reupholster our living room couch with vegan leather fabric.",
-    user_id: 1,
-)
-4.times do 
+# Los Angeles Listings
+3.times do 
     Listing.create(
         title: "Task Example",
         category: category.sample,
-        location: "San Francisco",
+        location: "Los Angeles",
         price: Faker::Number.between(from: 50, to: 100),
         desc: Faker::Lorem.sentence,
-        user_id: rand(1..4)
+        user_id: rand(5..7)
     )
 end
-# Los Angeles Listings
 Listing.create(
     title: "Need dimmers installed",
     category: "Electrical",
@@ -309,18 +284,18 @@ Listing.create(
     desc: "Need handyfolk to remove overgrown and unwanted bushes.",
     user_id: 5,
 )
-3.times do 
+
+# Seattle Listings
+2.times do 
     Listing.create(
         title: "Task Example",
         category: category.sample,
-        location: "Los Angeles",
+        location: "Seattle",
         price: Faker::Number.between(from: 50, to: 100),
         desc: Faker::Lorem.sentence,
-        user_id: rand(5..7)
+        user_id: rand(8..9)
     )
 end
-
-# Seattle Listings
 Listing.create(
     title: "Furniture Layout",
     category: "Design",
@@ -337,18 +312,18 @@ Listing.create(
     desc: "Would like to survey great room wall to approve demo.",
     user_id: 8,
 )
+
+# New York Listings
 3.times do 
     Listing.create(
         title: "Task Example",
         category: category.sample,
-        location: "Seattle",
+        location: "New York",
         price: Faker::Number.between(from: 50, to: 100),
         desc: Faker::Lorem.sentence,
-        user_id: rand(8..9)
+        user_id: rand(10..12)
     )
 end
-
-# New York Listings
 Listing.create(
     title: "Shower head installation",
     category: "Plumbing",
@@ -373,18 +348,18 @@ Listing.create(
     desc: "Looking for quick and efficient team to paint through home. Open to living room mural ideas.",
     user_id: 11,
 )
+
+# Boston Listings
 3.times do 
     Listing.create(
         title: "Task Example",
         category: category.sample,
-        location: "New York",
+        location: "Boston",
         price: Faker::Number.between(from: 50, to: 100),
         desc: Faker::Lorem.sentence,
-        user_id: rand(10..12)
+        user_id: rand(13..14)
     )
 end
-
-# Boston Listings
 Listing.create(
     title: "New outlet locations",
     category: "Electrical",
@@ -401,18 +376,18 @@ Listing.create(
     desc: "Looking for an architect with a strong sense of modern design for our home's new addition.",
     user_id: 13,
 )
-3.times do 
+
+# Chicago Listings
+2.times do 
     Listing.create(
         title: "Task Example",
         category: category.sample,
-        location: "Boston",
+        location: "Chicago",
         price: Faker::Number.between(from: 50, to: 100),
         desc: Faker::Lorem.sentence,
-        user_id: rand(13..14)
+        user_id: rand(15..16)
     )
 end
-
-# Chicago Listings
 Listing.create(
     title: "Home renovation",
     category: "Builder",
@@ -429,17 +404,43 @@ Listing.create(
     desc: "Complete install of all newly baught fixtures throughout the home",
     user_id: 15,
 )
-3.times do 
+puts "...Listings created!"
+
+# San Francisco listings
+2.times do 
     Listing.create(
         title: "Task Example",
         category: category.sample,
-        location: "Chicago",
+        location: "San Francisco",
         price: Faker::Number.between(from: 50, to: 100),
         desc: Faker::Lorem.sentence,
-        user_id: rand(15..16)
+        user_id: rand(1..4)
     )
 end
-puts "...Listings created!"
+Listing.create(
+    title: "Faucet repair",
+    category: "Plumbing",
+    location: "San Francisco",
+    price: Faker::Number.between(from: 50, to: 100),
+    desc: "Leaky faucet in masterbath needs fixing or replace.",
+    user_id: 1,
+)
+Listing.create(
+    title: "Kitchen design and renovation",
+    category: "Design",
+    location: "San Francisco",
+    price: 120,
+    desc: "In search of a freelance designer to create a new kitchen layout. Hoping to start construction within 3 to 4 months.",
+    user_id: 1,
+)
+Listing.create(
+    title: "Sofa reupholstering",
+    category: "Other",
+    location: "San Francisco",
+    price: 60,
+    desc: "Looking to reupholster our living room couch with vegan leather fabric.",
+    user_id: 1,
+)
 
 #-----LISTING PHOTOS----------
 puts "Creating ListingPhotos data..."
