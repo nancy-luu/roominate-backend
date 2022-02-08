@@ -460,11 +460,11 @@ Conversation.create!(
     user_id: 1, 
     user2_id: 5
 )
-Conversation.create!(
-    header: "Are you still looking for help with your task?",
-    user_id: 10, 
-    user2_id: 9
-)
+# Conversation.create!(
+#     header: "Are you still looking for help with your task?",
+#     user_id: 10, 
+#     user2_id: 9
+# )
 #get user and find by id on front end
 
 # Conversation.create(
@@ -487,6 +487,11 @@ Message.create(
     message: "I am available this weekend to inspect.",
     conversation_id: 1,
     user_id: 1
+)
+Message.create(
+    message: "Yes.",
+    conversation_id: 1,
+    user_id: 5
 )
 # Message.create(
 #     message: "Yes",

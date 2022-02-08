@@ -99,6 +99,7 @@ GEM
       concurrent-ruby (~> 1.0)
     io-wait (0.2.1)
     jsonapi-renderer (0.2.2)
+    jwt (2.3.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -195,6 +196,7 @@ DEPENDENCIES
   byebug
   cloudinary
   faker
+  jwt
   pg (~> 1.1)
   puma (~> 5.0)
   rack-cors

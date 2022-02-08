@@ -1,20 +1,44 @@
 class ApplicationController < ActionController::API
-    include ActionController::Cookies
-    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-    before_action :authorize
 
+  before_action :require_login
 
-    private
+  def encode_token(payload)
+      JWT.encode(payload, 'my_secret')
+  end
+  
 
-    def authorize
-      @current_user = User.find_by(id: session[:user_id])
-      puts "current user"
-      render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user
-      puts "done json"
+  def auth_header
+    request.headers['Authorization']
+  end
+
+  def decoded_token
+    if auth_header
+      token = auth_header.split(' ')[1]
+      #  header: { 'Authorization': 'Bearer <token>' }
+      begin
+        JWT.decode(token, 's3cr3t', true, algorithm: 'HS256')
+      rescue JWT::DecodeError
+        []
+      end
     end
+  end
 
-    def render_unprocessable_entity_response(exception)
-      render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
+  def session_user
+    decoded_hash = decoded_token
+    puts decoded_hash
+    if !decoded_hash.empty?
+      user_id = decoded_hash[0]['user_id']
+      @user = User.find_by(id: user_id)
+    else
+      nil
     end
-    
+  end
+
+  def logged_in?
+    !!session_user
+  end
+
+  def require_login
+    render json: {message: 'Please Login'}, status: :unauthorized unless logged_in?
+  end
 end

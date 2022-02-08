@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users #all routes
+  resources :users
   resources :user_photos, only:[:show, :create, :update]
 
   resources :listings #all routes
@@ -12,10 +12,9 @@ Rails.application.routes.draw do
   resources :conversations, only:[:index, :show, :create, :destroy] 
 
   # for user authentication
-  post "/signup", to: "users#create"
-  get "/me", to: "users#show"
-  get "/auth", to: "application#authorize"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
-
+  get '/profile', to: 'users#profile'
+  post "/login", to: "auth#login"
+  get "/auto_login", to: "auth#auto_login"
+  get "/user_is_authed", to: "auth#user_is_authed"
+  post "/signup", to: 'users#create'  
 end
