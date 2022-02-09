@@ -7,6 +7,8 @@ class ApplicationController < ActionController::API
   
 
   def auth_header
+    puts request.headers['Authorization']
+    puts "marker!"
     request.headers['Authorization'].split(' ')[1]
   end
 

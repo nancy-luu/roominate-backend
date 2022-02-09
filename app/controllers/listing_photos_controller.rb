@@ -14,7 +14,7 @@ class ListingPhotosController < ApplicationController
     def create 
         result = Cloudinary::Uploader.upload(params[:image])
         listing_photo = ListingPhoto.create(listing_id: listing.id, image: result['url'])
-        if photo.save 
+        if listing_photo.save 
             render json: listing_photo
         else 
             render json: listing_photo.errors
