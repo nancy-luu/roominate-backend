@@ -1,3 +1,3 @@
 class ListingPhotoSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :image
 end

@@ -1,6 +1,6 @@
 class UserPhotosController < ApplicationController
-    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
-    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found     
+    # rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+    # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found     
 
     def show
         user_photo = UserPhoto.find(params[:id])
@@ -29,16 +29,16 @@ class UserPhotosController < ApplicationController
         params.permit(:image, :user_id)
     end
 
-    def record_invalid(invalid)
-        render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
-    end
+    # def record_invalid(invalid)
+    #     render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    # end
 
     def find_userphoto
         UserPhoto.find(params[:id])
     end 
 
-    def render_not_found
-        render json: { error: "User Photo not found" }, status: :not_found
-    end
+    # def render_not_found
+    #     render json: { error: "User Photo not found" }, status: :not_found
+    # end
 
 end

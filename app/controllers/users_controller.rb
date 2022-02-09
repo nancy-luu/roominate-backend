@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     def test
     end
 
-
     def index
         render json: User.all.order(created_at: :desc)
     end
@@ -15,8 +14,8 @@ class UsersController < ApplicationController
     end 
 
     def profile
-        render json: {user: UserSerializer.new(current_user)}, status: :accepted
-     end
+        render json: {user: UserSerializer.new(session_user)}, status: :accepted
+    end
 
     #POST /signup
     def create 
