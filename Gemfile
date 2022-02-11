@@ -56,3 +56,5 @@ gem 'cloudinary'
 
 # Integrated JWT
 gem 'jwt'
+
+gem "figaro"

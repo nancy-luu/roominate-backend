@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-    skip_before_action :require_login, only: [:test]
-
-    def test
-    end
+    skip_before_action :require_login, only: [:create]
 
     def index
         render json: User.all.order(created_at: :desc)
@@ -40,7 +37,7 @@ class UsersController < ApplicationController
 
     def user_params
         # The has_secure_password (Links to an external site.) method also provides two new instance methods on your User model: password and password_confirmation. These methods don't correspond to database columns! Instead, to make these methods work, your users table must have a password_digest column.
-        params.permit(:username, :email, :password, :password_confirmation, :user_type, :user_desc, :user_location, :user_charge)
+        params.permit(:username, :email, :password, :password_confirmation, :user_type, :user_desc, :user_location, :user_charge, :user_photo)
     end
 
     def record_invalid(invalid)
