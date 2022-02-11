@@ -5,12 +5,6 @@ class ListingPhotosController < ApplicationController
         render json: listing_photo
     end
 
-    def update
-        listing_photo = find_listing_photo
-        listing_photo.update!(listing_photo_params )
-        render json: user, status: :ok
-    end 
-
     def create 
         result = Cloudinary::Uploader.upload(params[:image])
         listing_photo = ListingPhoto.create(listing_id: listing.id, image: result['url'])
@@ -19,6 +13,13 @@ class ListingPhotosController < ApplicationController
         else 
             render json: listing_photo.errors
         end 
+    end 
+
+    def update
+        newListImage = Cloudinary::Uploader.upload(params[:image])
+        listing_photo = find_listing_photo
+        listing_photo.update!(listing_id: listing.id, image: newListImage['url'])
+        render json: listing_photo, status: :ok
     end 
 
     private 

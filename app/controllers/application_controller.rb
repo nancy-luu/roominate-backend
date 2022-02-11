@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
 
   def auth_header
     puts request.headers['Authorization']
-    puts "marker!"
+    # puts "marker!"
     request.headers['Authorization'].split(' ')[1]
   end
 
@@ -42,4 +42,5 @@ class ApplicationController < ActionController::API
   def require_login
     render json: {message: 'Please Login'}, status: :unauthorized unless logged_in?
   end
+  
 end

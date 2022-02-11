@@ -17,4 +17,7 @@ Rails.application.routes.draw do
   get "/auto_login", to: "auth#auto_login"
   # get "/user_is_authed", to: "auth#user_is_authed"
   post "/signup", to: 'users#create'  
+
+  # update user photo explicitly
+  patch "/updateuserphoto", to: 'user_photos#update'
 end
