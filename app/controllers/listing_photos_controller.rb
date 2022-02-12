@@ -5,15 +5,27 @@ class ListingPhotosController < ApplicationController
         render json: listing_photo
     end
 
+    def listing
+        @listing = Listing.find_by(id: ListingPhoto.id)
+    end
+
     def create 
         result = Cloudinary::Uploader.upload(params[:image])
-        listing_photo = ListingPhoto.create(listing_id: listing.id, image: result['url'])
+        listing_photo = ListingPhoto.find_by(listing_id: listing.id)
+     
+        if listing_photo
+            listing_photo.update(image: result['url'])
+        else
+            listing_photo = ListingPhoto.create(listing_id: listing.id, image: result['url'])
+        end
+
         if listing_photo.save 
             render json: listing_photo
         else 
             render json: listing_photo.errors
         end 
     end 
+
 
     def update
         newListImage = Cloudinary::Uploader.upload(params[:image])
