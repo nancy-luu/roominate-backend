@@ -2,17 +2,18 @@ class UsersController < ApplicationController
     skip_before_action :require_login, only: [:create]
 
     def index
-        render json: User.all.order(created_at: :desc)
+        render json: User.all.order(created_at: :desc), include: ['listings.listing_photo', 'user_photo']
+    end
+
+    def featured_users
+        random_user = User.find(User.pluck(:id).sample(6))
+        render json: random_user, include: ['user_photo']
     end
 
     def show
         user=User.find(params[:id])
         render json: user
     end 
-
-    def profile
-        render json: {user: UserSerializer.new(session_user)}, status: :accepted
-    end
 
     #POST /signup
     def create 
