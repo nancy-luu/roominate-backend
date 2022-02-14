@@ -1,17 +1,16 @@
 class ListingPhotosController < ApplicationController
+    before_action :find_listing, only: [:create]
 
     def show
         listing_photo = find_listing_photo
         render json: listing_photo
     end
 
-    def listing
-        @listing = Listing.find_by(id: ListingPhoto.id)
-    end
+    
 
     def create 
         result = Cloudinary::Uploader.upload(params[:image])
-        listing_photo = ListingPhoto.find_by(listing_id: listing.id)
+        listing_photo = ListingPhoto.find_by(listing_id: @listing.id)
      
         if listing_photo
             listing_photo.update(image: result['url'])
@@ -44,4 +43,7 @@ class ListingPhotosController < ApplicationController
         ListingPhoto.find(params[:id])
     end
 
+    def find_listing
+        @listing = Listing.find_by(id: params['listing_id'])
+    end
 end
