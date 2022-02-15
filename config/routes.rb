@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users #all routes
   resources :user_photos, only:[:show, :create, :update]
 
   resources :listings #all routes
@@ -18,5 +18,10 @@ Rails.application.routes.draw do
 
   #featured
   get "/featured_users", to: "users#featured_users"
+  get "/featured_listings", to: "listings#featured_listings"
+
+
+  #associate listing photo with listing when new listing created
+  post "/listing_photos/:id", to: "listing_photos#create"
 
 end

@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     def index
-        render json: Message.all
+        render json: Message.all.order(:created_at:)
     end
 
 
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
     private
 
     def message_params
-        params.permit(:message, :sender_id, :conversation_id)
+        params.permit(:message, :user_id, :conversation_id)
     end
 
     def record_invalid(invalid)
