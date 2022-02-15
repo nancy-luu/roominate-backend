@@ -6,6 +6,11 @@ class ListingsController < ApplicationController
         render json: Listing.all.order(created_at: :desc), include: ['listing_photo']
     end 
 
+    def featured_listings
+        random_listing = Listing.find(Listing.pluck(:id).sample(4))
+        render json: random_listing, include: ['listing_photo']
+    end
+
     def create 
         listing = Listing.create!(listing_params)
         render json: listing, status: :created
