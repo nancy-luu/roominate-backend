@@ -14,6 +14,11 @@ class ConversationsController < ApplicationController
     #     render json: conversation, status: :ok
     # end
 
+    def message_count
+        conversation = find_conversation
+        render json: conversation.messages.count
+    end
+
     def create 
         conversation = Conversation.create!(conversation_params)
         render json: conversation, status: :created
