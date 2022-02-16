@@ -3,9 +3,8 @@ class MessagesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     def index
-        render json: Message.all.order(:created_at:)
+        render json: Message.all.order(:created_at)
     end
-
 
     def show 
         message = Messages.find(params[:id])

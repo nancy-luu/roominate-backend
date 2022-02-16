@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :user_reviews, only:[:show, :create, :destroy]
 
   resources :messages, only:[:index, :show, :create, :destroy] 
-  resources :conversations, only:[:index, :show, :create, :destroy] 
+  resources :conversations, only:[:index, :create, :destroy] 
 
   # for user authentication
   post "/login", to: "auth#login"
@@ -25,5 +25,8 @@ Rails.application.routes.draw do
 
   #show message count
   get "/message_count/:id", to: "conversations#message_count"
+
+  #find only conversations that could includes current user
+  get "my_conversations", to: "conversations#my_conversations"
 
 end

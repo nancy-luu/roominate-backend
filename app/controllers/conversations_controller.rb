@@ -5,8 +5,9 @@ class ConversationsController < ApplicationController
         render json: Conversation.all
     end
 
-    def show
-        render json: Conversation.where(user_1: @current_user).or(user_2: @current_user).order(created_at: :desc)
+    def my_conversations
+        my_conversations = Conversation.where(user_id: session_user.id).or(Conversation.where(user2_id: session_user.id))
+        render json: my_conversations, include: ['user.user_photo']
     end
 
     # def show
