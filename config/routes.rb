@@ -20,8 +20,10 @@ Rails.application.routes.draw do
   get "/featured_users", to: "users#featured_users"
   get "/featured_listings", to: "listings#featured_listings"
 
-
   #associate listing photo with listing when new listing created
   post "/listing_photos/:id", to: "listing_photos#create"
+
+  #show message count
+  get "/message_count/:id", to: "conversations#message_count"
 
 end
