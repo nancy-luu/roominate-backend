@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     skip_before_action :require_login, only: [:create]
 
     def index
-        render json: User.all.order(created_at: :desc), include: ['listings.listing_photo', 'user_photo']
+        render json: User.all.order(created_at: :desc), include: ['listings.listing_photo', 'user_photo', 'invoices']
     end
 
     def featured_users
