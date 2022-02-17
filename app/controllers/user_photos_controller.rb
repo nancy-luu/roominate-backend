@@ -1,6 +1,10 @@
 class UserPhotosController < ApplicationController
     # rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
-    # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found     
+    # rescue_from ActiveRecord::RecordNotFound, with: :render_not_found   
+    
+    def index
+        render json: UserPhoto.all
+    end
 
     def show
         user_photo = UserPhoto.find(params[:id])

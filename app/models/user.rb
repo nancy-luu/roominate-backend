@@ -5,9 +5,11 @@ class User < ApplicationRecord
     has_many :listings
     has_many :listing_photo, through: :listings
 
-    has_many :conversations
+    has_many :conversations, dependent: :destroy
     # has_many :other_conversations, class_name: "User", foreign_key: "user2"
     has_many :messages, through: :conversations
+
+    has_many :invoices
 
     has_one :user_review, dependent: :destroy
     has_many :reviews, through: :user_review

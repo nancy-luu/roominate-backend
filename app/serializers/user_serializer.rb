@@ -12,5 +12,7 @@ class UserSerializer < ActiveModel::Serializer
     has_many :reviews, through: :user_review
 
     has_one :user_photo
+
+    has_many :invoices
 end
   

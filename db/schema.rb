@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_04_010008) do
+ActiveRecord::Schema.define(version: 2022_02_16_210924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,21 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user2_id"], name: "index_conversations_on_user2_id"
     t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "title"
+    t.string "invoice_desc"
+    t.boolean "paid"
+    t.integer "hours_worked"
+    t.integer "additional_fees"
+    t.integer "amount"
+    t.bigint "user_id"
+    t.bigint "user2_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user2_id"], name: "index_invoices_on_user2_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "listing_photos", force: :cascade do |t|
@@ -97,6 +112,8 @@ ActiveRecord::Schema.define(version: 2022_02_04_010008) do
 
   add_foreign_key "conversations", "users"
   add_foreign_key "conversations", "users", column: "user2_id"
+  add_foreign_key "invoices", "users"
+  add_foreign_key "invoices", "users", column: "user2_id"
   add_foreign_key "listing_photos", "listings"
   add_foreign_key "messages", "conversations"
   add_foreign_key "user_photos", "users"
