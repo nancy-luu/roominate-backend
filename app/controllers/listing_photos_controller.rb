@@ -10,7 +10,6 @@ class ListingPhotosController < ApplicationController
 
     def create 
         result = Cloudinary::Uploader.upload(params[:image])
-        # listing_photo = ListingPhoto.find_by(listing_id: @listing.id)
         if !find_listing
             render json: {error: "That listing doesn't exist"}
             return
@@ -50,7 +49,6 @@ class ListingPhotosController < ApplicationController
     end
 
     def find_listing
-        # @listing = Listing.find_by(id: params['listing_id'])
         listing = Listing.find_by_id(params[:listing_id])
     end
 end

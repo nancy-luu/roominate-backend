@@ -11,11 +11,6 @@ class ConversationsController < ApplicationController
         render json: ordered_conversation, include: ['user.user_photo']
     end
 
-    # def show
-    #     conversation = find_conversation
-    #     render json: conversation, status: :ok
-    # end
-
     def message_count
         conversation = find_conversation
         render json: conversation.messages.count
